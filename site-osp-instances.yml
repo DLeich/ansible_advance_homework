@@ -1,4 +1,30 @@
-- hosts: workstation
+---
+- name: deploy instances
+  hosts: workstation
   become: yes
   roles:
     - osp-servers
+    - osp-facts
+
+- name: configure app servers
+  hosts: apps
+  become: yes
+  roles:
+  - base-config
+  - app-tier
+
+- name: configure haproxy servers
+  become: yes
+  hosts: frontends
+  vars:
+    GUID: 9d39
+  roles:
+  - base-config
+  - lb-tier
+
+- name: configure postgresql servers
+  become: yes
+  hosts: appdbs
+  roles:
+    - base-config
+    - geerlingguy.postgresql
