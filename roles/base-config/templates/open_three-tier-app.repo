@@ -1,4 +1,4 @@
-{{ ansible_managed }}
+# {{ ansible_managed }}
 
 [rhel-7-server-rpms]
 name=Red Hat Enterprise Linux 7
