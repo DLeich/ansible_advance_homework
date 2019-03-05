@@ -21,6 +21,7 @@
       cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
       curl -o /tmp/internal.repo "{{ repo_internal }}"
       cp /tmp/internal.repo /etc/yum.repos.d/internal.repo
+      sed -i -e '/Defaults    requiretty/{ s/.*/# Defaults    requiretty/ }' /etc/sudoers
   loop: "{{ osp_servers }}"
 
 - name: Add floating IP to Servers
