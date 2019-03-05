@@ -17,7 +17,7 @@
   become: yes
   hosts: frontends
   vars:
-    GUID: 9d39
+    GUID: 51a0
   roles:
   - base-config
   - lb-tier
