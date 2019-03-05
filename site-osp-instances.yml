@@ -1,4 +1,33 @@
-- hosts: workstation
+---
+- name: deploy instances
+  hosts: workstation
   become: yes
   roles:
     - osp-servers
+    - osp-facts
+
+- name: configure app servers
+  hosts: apps
+  become: yes
+  roles:
+  - base-config
+  - app-tier
+
+- name: configure haproxy servers
+  become: yes
+  hosts: frontends
+  roles:
+  - base-config
+  - lb-tier
+
+- name: configure postgresql servers
+  become: yes
+  hosts: appdbs
+  # postgres user is not getting a tty, which disallows privilege escalation
+  # Workaround for now is to disable ssh pipelining, as per:
+  # https://github.com/geerlingguy/ansible-role-postgresql/issues/29
+  vars:
+    ansible_ssh_pipelining: false
+  roles:
+    - base-config
+    - geerlingguy.postgresql
