@@ -16,8 +16,8 @@
 - name: configure haproxy servers
   become: yes
   hosts: frontends
-  vars:
-    GUID: 51a0
+  # vars:
+  #   GUID: 51a0
   roles:
   - base-config
   - lb-tier
