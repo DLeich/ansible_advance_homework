@@ -5,6 +5,7 @@
     scm_type: git
     scm_url: "{{ github_repo }}"
     scm_update_on_launch: yes
+    tower_verify_ssl: no
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
