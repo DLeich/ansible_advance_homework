@@ -1,2 +1,2 @@
 [workstation]
-workstation ansible_ssh_host=workstation-51a0.rhpds.opentlc.com
+workstation ansible_ssh_host=workstation-2788.rhpds.opentlc.com
